@@ -1,0 +1,1 @@
+The AI Engineer role requires experience with Python, machine learning, LLM applications, retrieval-augmented generation, APIs, vector databases, and production-quality software engineering practices.
