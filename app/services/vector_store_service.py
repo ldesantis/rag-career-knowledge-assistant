@@ -39,3 +39,23 @@ def store_chunks(embedded_chunks: list[dict]) -> None:
         embeddings=embeddings,
         metadatas=metadatas
     )
+
+def search_chunks(query_embedding: list[float], top_k: int = 3) -> list[dict]:
+    collection = get_collection()
+
+    results = collection.query(
+        query_embeddings=[query_embedding],
+        n_results=top_k
+    )
+
+    retrieved_chunks = []
+
+    for index in range(len(results["ids"][0])):
+        retrieved_chunks.append({
+            "id": results["ids"][0][index],
+            "content": results["documents"][0][index],
+            "metadata": results["metadatas"][0][index],
+            "distance": results["distances"][0][index]
+        })
+
+    return retrieved_chunks
